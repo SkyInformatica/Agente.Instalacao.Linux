@@ -24,7 +24,7 @@ EOF
 
 chmod 755 /etc/systemd/system/$nomeServico.service
 
-cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/appsettings.json
+cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
 
  #   systemctl daemon-reload
  #   systemctl enable $nomeServico$versaoServico.service
