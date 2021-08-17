@@ -22,7 +22,7 @@ ExecStart=$dirInstalacao/$nomeServico/$nomeApp &> /dev/null &
 WantedBy=default.target
 EOF
 
-cp $dirInstalacao/../appsetings.json $dirInstalacao/$nomeServico/
+cp $dirInstalacao/../appsettings.json $dirInstalacao/$nomeServico/
 
  #   systemctl daemon-reload
  #   systemctl enable $nomeServico$versaoServico.service
