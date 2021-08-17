@@ -16,7 +16,7 @@ Description=$nomeServico
 User=root
 Restart=on-failure
 Type=simple
-ExecStart=$dirInstalacao/$nomeServico/$nomeApp &> /dev/null &
+ExecStart=$dirInstalacao/repositorio/$versaoAInstalar/$nomeApp &> /dev/null &
 
 [Install]
 WantedBy=default.target
@@ -24,7 +24,7 @@ EOF
 
 chmod 755 /etc/systemd/system/$nomeServico.service
 
-cp $dirInstalacao/../appsettings.json $dirInstalacao/$nomeServico/appsettings.json
+cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/appsettings.json
 
  #   systemctl daemon-reload
  #   systemctl enable $nomeServico$versaoServico.service
