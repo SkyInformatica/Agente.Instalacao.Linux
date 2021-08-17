@@ -22,7 +22,9 @@ ExecStart=$dirInstalacao/$nomeServico/$nomeApp &> /dev/null &
 WantedBy=default.target
 EOF
 
-cp $dirInstalacao/../appsettings.json $dirInstalacao/$nomeServico/
+chmod 755 /etc/systemd/system/$nomeServico.service
+
+cp $dirInstalacao/../appsettings.json $dirInstalacao/$nomeServico/appsettings.json
 
  #   systemctl daemon-reload
  #   systemctl enable $nomeServico$versaoServico.service
