@@ -10,13 +10,14 @@ tipoServico=$(ps -p 1 |awk '{print $4}' |sed "1d")
 if [ "$tipoServico" = "systemd" ]; then
     cat > /etc/systemd/system/$nomeServico.service << EOF
 [Unit]
-Description=$nomeServico
+Description=$nomeServico Daemon
 
 [Service]
 User=root
-Restart=on-failure
+Restart=always
 Type=simple
 ExecStart=$dirInstalacao/repositorio/$versaoAInstalar/$nomeApp &> /dev/null &
+WorkingDirectory=$dirInstalacao/repositorio/$versaoAInstalar/
 
 [Install]
 WantedBy=default.target
