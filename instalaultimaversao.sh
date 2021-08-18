@@ -2,7 +2,7 @@
 
 versaoAInstalar=1.0.2.3
 nomeServico=SkyAgenteNovoProjeto$versaoAInstalar
-nomeApp=SkyInfo.Agente.Servico.Agente.dll
+nomeApp=SkyInfo.Agente.Servico.Agente
 dirInstalacao="$(dirname $0)"
 
 tipoServico=$(ps -p 1 |awk '{print $4}' |sed "1d")
