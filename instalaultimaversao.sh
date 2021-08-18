@@ -16,15 +16,15 @@ Description=$nomeServico Daemon
 User=root
 Restart=always
 Type=simple
-ExecStart=$dirInstalacao/repositorio/$versaoAInstalar/Binarios/$nomeApp &> /dev/null &
-WorkingDirectory=$dirInstalacao/repositorio/$versaoAInstalar/Binarios/
+ExecStart=$dirInstalacao/$versaoAInstalar/Binarios/$nomeApp &> /dev/null &
+WorkingDirectory=$dirInstalacao/$versaoAInstalar/Binarios/
 
 [Install]
 WantedBy=default.target
 EOF
 
 chmod 755 /etc/systemd/system/$nomeServico.service
-chmod +x $dirInstalacao/repositorio/$versaoAInstalar/Binarios/*
+chmod +x $dirInstalacao/$versaoAInstalar/Binarios/*
 
 cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
 
