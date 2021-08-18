@@ -16,20 +16,21 @@ Description=$nomeServico Daemon
 User=root
 Restart=always
 Type=simple
-ExecStart=$dirInstalacao/repositorio/$versaoAInstalar/$nomeApp &> /dev/null &
-WorkingDirectory=$dirInstalacao/repositorio/$versaoAInstalar/
+ExecStart=$dirInstalacao/repositorio/$versaoAInstalar/Binarios/$nomeApp &> /dev/null &
+WorkingDirectory=$dirInstalacao/repositorio/$versaoAInstalar/Binarios/
 
 [Install]
 WantedBy=default.target
 EOF
 
 chmod 755 /etc/systemd/system/$nomeServico.service
+chmod +x $dirInstalacao/repositorio/$versaoAInstalar/Binarios/*
 
 cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
 
- #   systemctl daemon-reload
- #   systemctl enable $nomeServico$versaoServico.service
- #   systemctl start $nomeServico$versaoServico.service
+ systemctl daemon-reload
+ systemctl enable $nomeServico$versaoServico.service
+ systemctl start $nomeServico$versaoServico.service
 
 elif [ "$tipoServico" = "init" ]; then
         echo "Scripts INIT em desenvolvimento"
