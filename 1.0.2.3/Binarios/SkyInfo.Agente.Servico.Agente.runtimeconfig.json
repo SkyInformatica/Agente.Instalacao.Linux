@@ -8,6 +8,7 @@
       }
     ],
     "configProperties": {
+      "System.Globalization.Invariant": true,
       "System.GC.Concurrent": false,
       "System.GC.Server": false
     }
