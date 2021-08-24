@@ -10,6 +10,7 @@
     "configProperties": {
       "System.GC.Concurrent": false,
       "System.GC.Server": false,
+      "System.Globalization.Invariant": true,
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false
     }
   }
