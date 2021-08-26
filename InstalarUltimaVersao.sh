@@ -3,7 +3,7 @@
 versaoAInstalar=1.0.2.3
 nomeServico=SkyAgenteNovoProjeto$versaoAInstalar
 nomeApp=SkyInfo.Agente.Servico.Agente
-dirInstalacao="$(dirname $0)"
+dirInstalacao="$(dirname $(readlink -f $0))"
 
 tipoServico=$(ps -p 1 |awk '{print $4}' |sed "1d")
 
@@ -26,7 +26,7 @@ EOF
 chmod 755 /etc/systemd/system/$nomeServico.service
 chmod +x $dirInstalacao/$versaoAInstalar/Binarios/*
 
-cp $dirInstalacao/../appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
+cp $dirInstalacao/appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
 
  systemctl daemon-reload
  systemctl enable $nomeServico$versaoServico.service
