@@ -9,11 +9,9 @@ if [ "$tipoServico" = "systemd" ]; then
   for SERVICO in $(ls /etc/systemd/system/ | grep $NOMESERVICO)
   do
 
-    if [ "$(systemctl is-active $SERVICO)" != "active" ]; then
-      systemctl stop $SERVICO
-      systemctl disable $SERVICO
-      rm /etc/systemd/system/$SERVICO
-    fi
+    systemctl stop $SERVICO
+    systemctl disable $SERVICO
+    rm /etc/systemd/system/$SERVICO
 
   done
 
@@ -22,12 +20,8 @@ elif [ "$tipoServico" = "init" ]; then
   for SERVICO in $(ls /etc/init.d/ | grep $NOMESERVICO)
   do
 
-    if [ "$(service $SERVICO status)" != "$SERVICO: Rodando." ]; then
-
-      update-rc.d -f $SERVICO remove
-      rm /etc/init.d/$SERVICO
-
-    fi
+    update-rc.d -f $SERVICO remove
+    rm /etc/init.d/$SERVICO
 
   done
 
@@ -36,3 +30,5 @@ else
   echo "Systema não suportado" 
 
 fi
+
+rm -rf $(dirname $(readlink -f $0))/../repositorio/
