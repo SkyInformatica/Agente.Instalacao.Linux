@@ -17,15 +17,15 @@ if [ "$tipoServico" = "systemd" ]; then
 
   done
 
-elif [ "$tipoServico" = "init"]; then
+elif [ "$tipoServico" = "init" ]; then
 
   for SERVICO in $(ls /etc/init.d/ | grep $NOMESERVICO)
   do
 
     if [ "$(service $SERVICO status)" != "$SERVICO: Rodando." ]; then
-      echo "Vai pra vala caraiiiiiiii: $SERVICO"
-#      update-rc.d -f $SERVICO remove
-#      rm /etc/systemd/system/$SERVICO
+
+      update-rc.d -f $SERVICO remove
+      rm /etc/systemd/system/$SERVICO
 
     fi
 
