@@ -21,13 +21,14 @@ elif [ "$tipoServico" = "init" ]; then
   do
 
     update-rc.d -f $SERVICO remove
+    /etc/init.d/$SERVICO stop
     rm /etc/init.d/$SERVICO
 
   done
 
 else
 
-  echo "Systema não suportado" 
+  echo "Systema não suportado"
 
 fi
 
