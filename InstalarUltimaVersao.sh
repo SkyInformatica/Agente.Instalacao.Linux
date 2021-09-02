@@ -5,6 +5,8 @@ nomeServico=SkyAgenteNovoProjeto$versaoAInstalar
 nomeApp=SkyInfo.Agente.Servico.Agente
 dirInstalacao="$(dirname $(readlink -f $0))"
 
+cp $dirInstalacao/appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
+
 tipoServico=$(ps -p 1 |awk '{print $4}' |sed "1d")
 
 if [ "$tipoServico" = "systemd" ]; then
@@ -23,14 +25,11 @@ WorkingDirectory=$dirInstalacao/$versaoAInstalar/Binarios/
 WantedBy=default.target
 EOF
 
-chmod 755 /etc/systemd/system/$nomeServico.service
-chmod +x $dirInstalacao/$versaoAInstalar/Binarios/*
+    chmod 755 /etc/systemd/system/$nomeServico.service
 
-cp $dirInstalacao/appsettings.json $dirInstalacao/$versaoAInstalar/Binarios/appsettings.json
-
- systemctl daemon-reload
- systemctl enable $nomeServico$versaoServico.service
- systemctl start $nomeServico$versaoServico.service
+    systemctl daemon-reload
+    systemctl enable $nomeServico$versaoServico.service
+    systemctl start $nomeServico$versaoServico.service
 
 elif [ "$tipoServico" = "init" ]; then
 
@@ -101,9 +100,9 @@ case "\$1" in
     status)
         if [ -z "\$(pgrep -f \$DAEMON)" ]
 	then 
- 		echo "O \$NAME NÃO esta rodando!"
+ 		echo "\$NAME: NÃO esta rodando."
 	else
-        	pgrep -f "SkyInfo.Agente.Servico.Agente" |awk {'print "'\$NAME': Em execução - PID: " \$1 '}
+        	echo "\$NAME: Rodando."
 	fi
         exit "\$?"
         ;;
@@ -115,8 +114,10 @@ esac
 
 EOF
 
-chmod +x /etc/init.d/$nomeServico
+    chmod +x /etc/init.d/$nomeServico
+    update-rc.d $nomeServico defaults
+    /etc/init.d/$nomeServico start
 
 else 
-        echo "Systema não suportado"
+    echo "Systema não suportado"
 fi
