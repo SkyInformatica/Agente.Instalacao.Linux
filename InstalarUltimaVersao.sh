@@ -1,6 +1,6 @@
 #!/bin/bash
 
-versaoAInstalar=1.0.2.6
+versaoAInstalar=1.0.2.7
 nomeServico=SkyAgenteNovoProjeto$versaoAInstalar
 nomeApp=SkyInfo.Agente.Servico.Agente
 dirInstalacao="$(dirname $(readlink -f $0))"
